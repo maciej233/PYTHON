@@ -1,0 +1,7 @@
+---
+ansible_host: 172.26.2.11
+ansible_user: maciej
+ansible_ssh_pass: 6565
+ansible_connection: network_cli
+ansible_network_os: linux
+ansible_become: no

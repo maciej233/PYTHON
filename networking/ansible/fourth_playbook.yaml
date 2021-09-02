@@ -1,0 +1,12 @@
+---
+  - name: TEST backup ios router
+    hosts: all
+    gather_facts: no
+
+    tasks:
+      - name: backup
+        ios_config:
+          backup: yes
+
+        register: backup_ios_location
+        when: ansible_network_os == 'ios'

@@ -1,0 +1,2 @@
+# to avoid auth in ios devices use:
+# ANSIBLE_HOST_KEY_CHECKING=False

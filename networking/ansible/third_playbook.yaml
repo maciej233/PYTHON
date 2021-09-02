@@ -1,6 +1,6 @@
 ---
 - name: IOS Show Commands 
-  hosts: "switch"
+  hosts: "router"
   gather_facts: false
   connection: local
 
@@ -10,8 +10,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       timeout: 30
-      #provider: cli
-      
+      #transport: cli      
 
   tasks:
     - name: ios show commands
@@ -19,7 +18,7 @@
         commands: 
           - show version | i IOS
           - show run | i hostname
-        #provider: "{{ cli }}"
+        provider: "{{ cli }}"
 
       register: output
 

@@ -1,5 +1,5 @@
 ---
-- hosts: 172.26.1.12
+- hosts: 172.26.2.11
 
   tasks:
       - name: check disk usage

@@ -1,0 +1,132 @@
+Building configuration...
+
+Current configuration : 1752 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$IFTk$EwuT.tFCh8gH5FARliinP0
+!
+no aaa new-model
+memory-size iomem 5
+no ip icmp rate-limit unreachable
+ip cef
+!
+!
+no ip dhcp use vrf connected
+ip dhcp excluded-address 172.26.2.1 172.26.2.10
+!
+ip dhcp pool LAN2
+   network 172.26.2.0 255.255.255.0
+   default-router 172.26.2.1 
+!
+!
+ip domain name siec_lab
+ip name-server 8.8.8.8
+ip auth-proxy max-nodata-conns 3
+ip admission max-nodata-conns 3
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$43t8$PIj8Gd5Nvmw18P4diQfum.
+!
+!
+ip tcp synwait-time 5
+ip ssh version 2
+! 
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 172.26.2.1 255.255.255.0
+!
+interface FastEthernet0/1
+ ip address 172.26.3.2 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet1/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface FastEthernet2/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+router ospf 10
+ router-id 2.2.2.2
+ log-adjacency-changes
+ passive-interface FastEthernet0/0.10
+ network 172.26.2.0 0.0.0.255 area 0
+ network 172.26.3.0 0.0.0.3 area 0
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+no cdp log mismatch duplex
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line vty 0 4
+ logging synchronous
+ login local
+ transport input telnet ssh
+line vty 5 15
+ logging synchronous
+ login local
+ transport input telnet ssh
+!
+!
+end
