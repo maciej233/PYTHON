@@ -1,0 +1,13 @@
+---
+  - name: Trival Echo loop
+    gather_facts: False
+    hosts: 'localhost'
+    tasks:
+      - name: echo loop
+        command: echo "{{ item }}"
+        with_items:
+          - 'r1'
+          - 'r2'
+          - 'r3'
+          - 'r4'
+          - 'r5'

@@ -8,3 +8,7 @@ s01_lan2
 [router]
 r1
 r2
+
+[ios-device:children]
+switch
+router

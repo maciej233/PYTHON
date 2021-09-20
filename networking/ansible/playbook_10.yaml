@@ -1,0 +1,28 @@
+---
+#doesnt work :(
+  - name: Expand adding vlans this ip and descriptions
+    gather_facts: False
+    hosts: "switch"
+    connection: network_cli
+
+    vars:
+      vlans: { 
+        "100": {"description": "lan100", "ip": "192.168.100.1"},
+        "200": {"description": "lan200", "ip": "192.168.200.1"},
+        "300": {"description": "lan300", "ip": "192.168.300.1"}
+        }
+
+    tasks:
+      - name: add vlans
+        ios_config:
+          lines:
+            - vlan {{item.key}}
+        with_dict: "{{ vlans }}"
+          
+      - name: add descriptions and ip address        
+        ios_config:          
+          lines:
+            - description {{ item.value.description }}
+            - ip address {{ item.value.ip }} 255.255.255.0
+          parents: interface vlan {{ item.key }}          
+        with_dict: "{{ vlans }}"

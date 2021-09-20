@@ -1,0 +1,18 @@
+---
+  - name: Gather some specific facts in condition
+    gather_facts: False
+    connection: network_cli
+    hosts: all
+    tasks:
+      - name: Gather facts via ios module
+        ios_facts:
+        when: ansible_network_os == "ios"
+
+      - name: Display certein facts
+        debug:
+          msg: "The hostname is {{ansible_net_hostname}} running {{ansible_net_version}}"
+
+      - name: Display all facts for host
+        when: ansible_net_hostname == 's01_lan1'
+        debug:
+          var: hostvars['s01_lan1']

@@ -1,0 +1,14 @@
+---
+  - name: Add multiple vlans
+    gather_facts: False
+    connection: network_cli
+    hosts: "switch"
+    vars:
+      vlans: [100, 200, 300]
+    tasks:
+      - name: add vlans
+        ios_config:
+          lines:
+            - vlan {{ item }}
+        with_items: "{{ vlans }}"
+        register: output

@@ -1,0 +1,11 @@
+---
+  - name: Template looping
+    hosts: localhost
+    gather_facts: False
+
+    tasks:
+      - name: create switch configuraction
+        template:
+          src=/home/maciej/repository/networking/ansible/templates/switch.j2
+          dest=/home/maciej/repository/networking/ansible/templates/{{item.key}}_ver2.conf
+        with_dict: "{{ devices }}"

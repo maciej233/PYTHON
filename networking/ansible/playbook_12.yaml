@@ -1,0 +1,36 @@
+---
+  - name: Template looping
+    hosts: localhost
+    gather_facts: False
+
+    vars:
+      devices: {
+        "s01_lan4": {
+          "hostname": "s01_lan4",
+          "username": "cisco",
+          "password": "cisco",
+          "vlans": [100, 200, 300],
+          "vlan_interface_13": True,
+          "vlan_interfaces": [
+            {"int_num": "100", "ip": "172.26.100.1"},
+            {"int_num": "200", "ip": "172.26.200.1"},
+            {"int_num": "300", "ip": "172.26.300.1"}
+          ]         
+        },
+        "s02_lan4": {
+          "hostname": "s02_lan4",
+          "username": "cisco",
+          "password": "cisco",
+          "vlans": [100, 200, 300],
+          "vlan_interface_13": False     
+        }
+      }
+      
+
+    tasks:
+
+      - name: create switch configuraction
+        template:
+          src=/home/maciej/repository/networking/ansible/templates/switch.j2
+          dest=/home/maciej/repository/networking/ansible/templates/{{item.key}}.conf
+        with_dict: "{{ devices }}"

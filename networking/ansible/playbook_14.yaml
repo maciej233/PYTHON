@@ -1,0 +1,13 @@
+---
+  - name: Naisble Group and Host Variables
+    hosts: localhost
+
+    tasks:
+      - name: create router config
+        template:
+          src=/home/maciej/repository/networking/ansible/templates/switch.j2
+          dest=/home/maciej/repository/networking/ansible/templates/{{item.key}}_ver3.conf
+        with_dict: "{{ devices }}"
+        register: output
+
+      -  include: show_output.yaml  

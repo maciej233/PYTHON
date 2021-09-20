@@ -1,0 +1,10 @@
+---
+  - name: Basic template
+    hosts: localhost
+
+    tasks:
+      - name: copy file to another file
+        template:
+          src=/home/maciej/repository/networking/ansible/templates/file1
+          dest=/home/maciej/repository/networking/ansible/templates/file2
+
