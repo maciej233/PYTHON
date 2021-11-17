@@ -1,0 +1,5 @@
+graph my_network {
+    core -- distrtibution;
+    distrtibution -- access1;
+    distrtibution -- access2;
+}
