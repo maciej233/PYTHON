@@ -1,5 +1,5 @@
 ---
-ansible_host: 172.26.2.254
+ansible_host: 172.26.2.4
 ansible_user: cisco
 ansible_ssh_pass: cisco
 ansible_network_os: ios

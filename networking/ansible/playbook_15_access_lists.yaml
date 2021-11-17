@@ -1,0 +1,23 @@
+---
+  - name: Implement access lists
+    hosts: r1
+    gather_facts: False
+    connection: local
+
+    tasks:
+      - ios_acls: # this module uses diffrent atributes than nxos_acl
+          name: border_inbound
+          seq: 20
+          action: deny
+          proto: tcp
+          src: 172.26.1.12
+          dest: any
+          log: enable
+          state: present
+
+      - name: apply ingress acl to FastEthernet 0/0.10
+        ios_acl_interface:
+          name: border_inbound
+          interface: fastethernet 0/0.10
+          direction: ingress
+          state: present
