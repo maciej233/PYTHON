@@ -1,0 +1,45 @@
+digraph My_Network {
+    {rank=same s01 r1 r2 s10}
+    {rank=same s02 s03 s04}
+    {rank=same s05 s06}
+    {rank=same Client s07 s08}
+    {rank=same s11 s12}
+
+	Client -> s07
+	s13 -> Server
+	s01 -> r1
+	r1 -> r2
+	r2 -> s10
+	s11 -> s10
+	s11 -> s12
+	s11 -> s13
+	s06 -> s05
+	s06 -> s04
+	s06 -> s08
+	s10 -> s11
+	s10 -> s12
+	s12 -> s10
+	s12 -> s11
+	s12 -> s13
+	s03 -> s02
+	s03 -> s04
+	s03 -> s01
+	s05 -> s02
+	s05 -> s06
+	s05 -> s07
+	s01 -> s02
+	s01 -> s03
+	s01 -> s04
+	s04 -> s03
+	s04 -> s06
+	s04 -> s01
+	s07 -> s05
+	s07 -> s08
+	s08 -> s06
+	s08 -> s07
+	s02 -> s05
+	s02 -> s03
+	s02 -> s01
+	s13 -> s12
+	s13 -> s11
+}
