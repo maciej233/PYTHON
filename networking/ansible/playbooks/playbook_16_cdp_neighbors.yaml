@@ -1,0 +1,18 @@
+---
+  - name: Gather Information about devices using cdp
+    hosts: "ios-device"
+    connection: network_cli
+
+    tasks:
+      - name: Run cdp on all devices
+        ios_config:
+          lines:
+            - cdp run
+
+      - name: Gather Information using show cdp neighbors
+        ios_command:
+          commands: show cdp neighors
+        register: output
+
+      - name: copy output file
+        copy: content="{{ output.stdout_lines }}" dest="/home/maciej/repo/networking/ansible/cdp_example_output/{{inventory_hostname}}_cdp_output.txt"
