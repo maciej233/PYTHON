@@ -1,7 +1,0 @@
-digraph my_network {
-    node [shape=box];
-    size = "50 30";
-    core -> distrtibution[label="2x10G"];
-    distrtibution -> access1 [label="1x10G"];
-    distrtibution -> access2 [label="1x10G"];
-}
