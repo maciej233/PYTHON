@@ -11,8 +11,8 @@
 
       - name: Gather Information using show cdp neighbors
         ios_command:
-          commands: show cdp neighors
+          commands: show cdp neighbors
         register: output
 
       - name: copy output file
-        copy: content="{{ output.stdout_lines }}" dest="/home/maciej/repo/networking/ansible/cdp_example_output/{{inventory_hostname}}_cdp_output.txt"
+        copy: content="{{ output.stdout_lines }}" dest="/home/maciej/repo/projects/networking/ansible/cdp_example_output/{{inventory_hostname}}_cdp_output.txt"

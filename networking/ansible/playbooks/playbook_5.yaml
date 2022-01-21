@@ -1,0 +1,18 @@
+---
+  - name: IOS command output with when clause
+    gather_facts: no
+    connection: network_cli
+    hosts: "ios-device"
+
+    tasks:
+      - name: show hostname
+        ios_command:
+          commands:
+            - show run | s ospf
+        register: output
+
+      - name: show output with when condition
+        when: '"id" in "{{output.stdout}}"'
+        debug:
+          msg: '{{output}}'
+
