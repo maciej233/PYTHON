@@ -1,0 +1,47 @@
+digraph My_Network {
+{rank=same "R1" "R2"}
+{rank=same "s01" "s10"}
+{rank=same "s02" "s03" "s04" "s11" "s12" }    
+{rank=same s05 s06 s13}
+{rank=same s07 s08}
+{rank=same Server MGMT_PC}
+	s13 -> Server
+	s07 -> MGMT_PC
+	R1 -> R2
+	s02 -> s01
+	s02 -> s03
+	s02 -> s05
+	s04 -> s01
+	s04 -> s03
+	s04 -> s06
+	s01 -> R1
+	s01 -> s03
+	s01 -> s02
+	s01 -> s04
+	s08 -> s07
+	s08 -> s06
+	s03 -> s01
+	s03 -> s02
+	s03 -> s04
+	R2 -> s10
+	s13 -> s11
+	s13 -> s12
+	R1 -> s01
+	s11 -> s10
+	s11 -> s12
+	s11 -> s13
+	s10 -> R2
+	s10 -> s11
+	s10 -> s12
+	s12 -> s10
+	s12 -> s11
+	s12 -> s13
+	s07 -> s05
+	s07 -> s08
+	s06 -> s05
+	s06 -> s04
+	s06 -> s08
+	s05 -> s02
+	s05 -> s07
+	s05 -> s06
+}
