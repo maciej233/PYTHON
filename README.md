@@ -1,4 +1,4 @@
 # projects
 simple python scripts for automatization
-# netwotking
+# networking
 includes few libraries like paramkiko, graphviz...
