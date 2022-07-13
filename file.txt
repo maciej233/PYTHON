@@ -1,5 +1,0 @@
-# github credential for token
-git config --global credential.helper cache
-
-# disable cache
-git config --global --unset credential.helper
