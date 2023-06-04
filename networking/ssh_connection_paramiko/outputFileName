@@ -1,0 +1,7 @@
+terminal length 0
+s04b-gdyLog-p3#conf t
+Configuration session is locked. The lock will be cleared once you exit out of configuration mode.
+Enter configuration commands, one per line.  End with CNTL/Z.
+s04b-gdyLog-p3(config)#username m.janczyk privilege 15 secret tajemnicA16
+s04b-gdyLog-p3(config)#end
+s04b-gdyLog-p3#exit

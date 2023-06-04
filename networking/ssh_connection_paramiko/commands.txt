@@ -1,2 +1,4 @@
-show run
+conf t
+username m.janczyk privilege 15 secret XXXXX
+end
 exit

@@ -3,15 +3,16 @@ import paramiko, time, getpass, json
 # na potrzeby serwerów
 #key = paramiko.RSAKey.from_private_key_file("home/user/.ssh/id_rsa")
 
-password = getpass.getpass("Password: ")
 username = input("Username: ")
+password = getpass.getpass("Password: ")
+
 max_buffer = 65535
 
 # piliki zewnetrzne
 with open("commands.txt", 'r') as f:
     commands = f.readlines()
 
-with open("devices.json", 'r') as f:
+with open("devices.json", 'r') as f:b
     devices = json.load(f)
 
 def clear_buffer(connection):
@@ -29,7 +30,7 @@ for device in devices.keys():
     time.sleep(2)
     new_connection.send("terminal length 0\n")
     output = clear_buffer(new_connection)
-    with open("outputFileName" 'wb') as f:
+    with open("outputFileName", 'wb') as f:
         for command in commands:
             new_connection.send(command)
             time.sleep(2)
