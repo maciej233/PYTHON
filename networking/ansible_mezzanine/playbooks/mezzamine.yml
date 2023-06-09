@@ -6,7 +6,7 @@
     proj_name: mezzanine_example
     venv_home: "{{ ansible_env.HOME }}"
     venv_path: "{{ venv_home }}/{{ proj_name }}"
-    proj_name: project
+    proj_dirname: project
     proj_path: "{{ venv_path }}/{{ proj_dirname}}"
     regs_path: requirments.txt
     manage: "{{ python }} / {{ proj_path }}/manage.py"
